@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Body = () => {
+const Body = ({ messages }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -16,37 +16,25 @@ const Body = () => {
                 </button>
             </header>
             <div className="container">
-                <div className="chats sender">
-                    <div className="message">
-                        <p>You</p>
-                        <p>Hello</p>
-                    </div>
-                </div>
-                <div className="chats receive">
-                    <div className="message">
-                        <p>You</p>
-                        <p>Hello</p>
-                    </div>
-                </div>
-
-                <div className="chats receive">
-                    <div className="message">
-                        <p>You</p>
-                        <p>Hello</p>
-                    </div>
-                </div>
-                <div className="chats sender">
-                    <div className="message">
-                        <p>You</p>
-                        <p>Hello</p>
-                    </div>
-                </div>
-                <div className="chats sender">
-                    <div className="message">
-                        <p>You</p>
-                        <p>Hello</p>
-                    </div>
-                </div>
+                {messages.map((element) => {
+                    const messageClass =
+                        element.name === localStorage.getItem("user")
+                            ? "chats sender"
+                            : "chats receive";
+                    return (
+                        <div className={messageClass} key={element.id}>
+                            <div className="message">
+                                <p>
+                                    {element.name ===
+                                    localStorage.getItem("user")
+                                        ? "You"
+                                        : element.name}
+                                </p>
+                                <p>{element.text}</p>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </>
     );

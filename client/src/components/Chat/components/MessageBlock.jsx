@@ -5,12 +5,15 @@ const MessageBlock = ({ socket }) => {
 
     const handleMessageSend = (e) => {
         e.preventDefault();
-        if (message.length === 0) return;
+        if (message.trim() && localStorage.getItem("user")) {
+            socket.emit("message", {
+                text: message,
+                name: localStorage.getItem("user"),
+                id: `${socket.id}-${Math.random}`,
+                socketID: socket.id,
+            });
+        }
 
-        console.log({
-            user: localStorage.getItem("user"),
-            message,
-        });
         setMessage("");
     };
 

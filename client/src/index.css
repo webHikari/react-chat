@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -89,19 +90,32 @@ input {
   background: #585858;
 }
 
+.chat {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+}
+
 .container {
-  margin-left: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 120px);
 }
 
 .chats {
-  display: flex;;
+  display: flex;
+  width: calc(100vw - 200px);
 }
 
 .receive {
   justify-content: flex-start;
+  margin-left: 20px;
 }
 
 .sender {
@@ -114,4 +128,15 @@ input {
   border-radius: 16px;
   line-height: 10px;
   padding: 0 16px;
+}
+
+.message-block {
+  padding: 16px;
+  width: 100%;
+  max-width: calc(100% - 56px);
+  display: flex;
+}
+
+.message-block input {
+  width: 100%;
 }
